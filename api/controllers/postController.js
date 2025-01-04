@@ -10,11 +10,11 @@ class PostController {
             const { data , error } = await supabase
                 .from('posts')
                 .select(
-                    'id, \
-                    created_at, \
+                    'created_at, \
                     genre, \
                     description, \
-                    picture_url');
+                    picture_url, \
+                    user_id');
             
             if (error) throw error;
             res.json(data);
@@ -35,7 +35,8 @@ class PostController {
                     'created_at, \
                     genre, \
                     description, \
-                    picture_url'
+                    picture_url, \
+                    user_id'
                 )
                 .eq("id", postID)
                 .single();
