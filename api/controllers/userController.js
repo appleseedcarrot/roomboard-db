@@ -27,20 +27,17 @@ class UserController {
     async getProfile(req, res) {
         try {
             // grab user ID
-            const userID = req.user.id;
+            const userID = req.params.id;
             
             // Perform the query from supabase
             const { data , error } = await supabase
-                .from('users')
-                .select('id, \
-                    email, \
-                    created_at, \
-                    user_profiles( \
-                        date_of_birth, \
-                        bio, \
-                        graduation_year, \
-                        profile_picture_url \
-                    )')
+                .from('user_profiles')
+                .select('date_of_birth, \
+                    bio, \
+                    graduation_year, \
+                    first_name, \
+                    last_name, \
+                    profile_picture_url')
                 .eq('id', userID); 
             
             // Check for errors
