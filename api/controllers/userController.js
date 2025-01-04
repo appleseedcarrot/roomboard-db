@@ -6,16 +6,13 @@ class UserController {
     async getUsers(req, res) {
         try {
             const { data , error } = await supabase
-                .from('users')
-                .select('id, \
-                    email, \
-                    created_at, \
-                    user_profiles( \
-                        date_of_birth, \
-                        bio, \
-                        graduation_year, \
-                        profile_picture_url \
-                    )')
+                .from('user_profiles')
+                .select('date_of_birth, \
+                    bio, \
+                    graduation_year, \
+                    first_name, \
+                    last_name, \
+                    profile_picture_url')
             
                 if (error) {
                     return res.status(400).json({ error: error.message});
