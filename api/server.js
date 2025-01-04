@@ -5,7 +5,12 @@ const authRoutes = require("./routes/authRoutes");
 const postRoutes = require("./routes/postRoutes");
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "https://activity-4-disc.vercel.app",  // Replace with your frontend URL
+  methods: "GET,POST,PUT,DELETE",  // Allowed methods
+  allowedHeaders: "Content-Type,Authorization",  // Allowed headers
+};
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
