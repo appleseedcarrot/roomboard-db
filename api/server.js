@@ -9,9 +9,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
-app.use("api/users", userRoutes);
-app.use("api/auth", authRoutes);
-app.use("api/posts", postRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
 
 app.use((err, req, res, next) => {
   console.error("Error:", err);
