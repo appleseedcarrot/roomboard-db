@@ -6,9 +6,9 @@ const postRoutes = require("./routes/postRoutes");
 
 const app = express();
 const corsOptions = {
-  origin: "https://activity-4-disc.vercel.app",  // Replace with your frontend URL
-  methods: "GET,POST,PUT,DELETE",  // Allowed methods
-  allowedHeaders: "Content-Type,Authorization",  // Allowed headers
+  origin: ["http://localhost:5173", "https://roomboard-db.vercel.app", "https://activity-4-disc.vercel.app"],
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
 };
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
