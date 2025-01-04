@@ -1,42 +1,28 @@
-
-const pool = require('./config/database.js');
 const express = require("express");
 const cors = require("cors");
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const postRoutes = require("./routes/postRoutes");
+
+const app = express();
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
+app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
+app.use("/posts", postRoutes);
+
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+  res.status(500).json({ error: "Internal server error" });
+});
 
 require("dotenv").config();
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
 // Default response
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to your Express server" });
-});
-
-// Get all the users in the database
-app.get("/api/users", async (req, res) => {
-    try {
-        const result = await pool.query('SELECT * FROM users');
-        res.json(result.rows);
-    }
-    catch (error) {
-        console.error('Error querying from Database: ', error);
-        res.status(500).send('Server Error');
-    }
-});
-
-// Get specific user from the database
-app.get("/api/users/:userID", async (req, res) => {
-    try {
-        const result = await pool.query('SELECT * FROM users WHERE id = $1', [req.params.userID]);
-        res.json(result.rows);
-    }
-    catch (error) {
-        console.error('Error querying from Database: ', error);
-        res.status(500).send('Server Error');
-    }
+  res.json({ message: "Serving is running" });
 });
 
 const PORT = process.env.PORT || 3005;
