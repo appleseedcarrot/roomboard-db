@@ -10,7 +10,8 @@ class PostController {
             const { data , error } = await supabase
                 .from('posts')
                 .select(
-                    'created_at, \
+                    'id, \
+                    created_at, \
                     genre, \
                     description, \
                     picture_url, \
