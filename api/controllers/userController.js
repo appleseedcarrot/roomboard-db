@@ -62,6 +62,7 @@ class UserController {
             // const { firstName, lastName, bio, profilePicture } = req.body;
 
             // Send update request to profiles table
+            console.log('Raw Request Body: ', req.body);
             const { error: profilesError } = await supabase
             .from('user_profiles')
             .update({
