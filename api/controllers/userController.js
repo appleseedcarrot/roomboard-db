@@ -7,9 +7,8 @@ class UserController {
         try {
             const { data , error } = await supabase
                 .from('user_profiles')
-                .select('date_of_birth, \
-                    bio, \
-                    graduation_year, \
+                .select('id, \
+                    date_of_birth, \
                     first_name, \
                     last_name, \
                     profile_picture_url')
@@ -32,7 +31,8 @@ class UserController {
             // Perform the query from supabase
             const { data , error } = await supabase
                 .from('user_profiles')
-                .select('date_of_birth, \
+                .select('id, \
+                    date_of_birth, \
                     bio, \
                     graduation_year, \
                     first_name, \
