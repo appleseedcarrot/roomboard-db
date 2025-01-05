@@ -59,16 +59,16 @@ class UserController {
             const userID = req.user.id;
 
             // Grab the new updated profile informations from the body
-            const { firstName, lastName, bio, profilePicture } = req.body;
+            // const { firstName, lastName, bio, profilePicture } = req.body;
 
             // Send update request to profiles table
             const { error: profilesError } = await supabase
             .from('user_profiles')
             .update({
-                first_name: firstName,
-                last_name: lastName,
-                bio: bio,
-                profile_picture_url: profilePicture,
+                first_name: req.body.firstName,
+                last_name: req.body.lastName,
+                bio: req.body.bio,
+                profile_picture_url: req.body.profilePicture,
             })
             .eq('user_id', userID);
 
